@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cognis-convoy-or"
+version = "0.1.0"
+description = "Military convoy routing w/ escort, dwell, threat-cost overlays"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.10"
+authors = [{name="Cognis Digital", email="suite@cognis.digital"}]
+readme = "README.md"
+keywords = ["military","ic","dod","cognis-digital","convoy-or"]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "pytest-cov"]
+
+[project.scripts]
+convoy-or = "convoy_or.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["convoy_or", "cognis_mil"]

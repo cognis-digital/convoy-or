@@ -1,0 +1,47 @@
+{
+  "stops": [
+    {
+      "name": "Origin FOB",
+      "lat": 34.0,
+      "lon": -117.0,
+      "dwell_min": 0,
+      "threat_score": 0.1,
+      "fuel_available": true
+    },
+    {
+      "name": "Waypoint 1",
+      "lat": 34.5,
+      "lon": -117.5,
+      "dwell_min": 10,
+      "threat_score": 0.3,
+      "choke_point": true
+    },
+    {
+      "name": "Mountain pass",
+      "lat": 35.0,
+      "lon": -118.0,
+      "dwell_min": 5,
+      "threat_score": 0.8,
+      "choke_point": true
+    },
+    {
+      "name": "Destination",
+      "lat": 35.5,
+      "lon": -118.5,
+      "dwell_min": 0,
+      "threat_score": 0.2,
+      "fuel_available": true
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "V1",
+      "type": "HEMTT",
+      "range_km": 600,
+      "fuel_per_km": 0.3,
+      "armored": true
+    }
+  ],
+  "max_threat_per_leg": 0.7,
+  "escort_required_above_threat": 0.4
+}
