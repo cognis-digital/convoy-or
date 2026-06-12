@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "cognis-convoy-or"
 version = "0.1.0"
 description = "Military convoy routing w/ escort, dwell, threat-cost overlays"
-license = {text = "Apache-2.0"}
+license = { text = "LicenseRef-COCL-1.0" }
 requires-python = ">=3.10"
 authors = [{name="Cognis Digital", email="suite@cognis.digital"}]
 readme = "README.md"
