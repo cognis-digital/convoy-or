@@ -7,7 +7,7 @@ unit-testing the math.
 from __future__ import annotations
 import math, json
 from pathlib import Path
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from cognis_mil import ScanResult, Finding, Severity
 
 @dataclass
