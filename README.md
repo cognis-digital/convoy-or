@@ -23,6 +23,16 @@ licensing posture, supported commits, and how to upgrade.
 - Choke-point dwell minimization
 - OR-Tools VRP integration (when installed)
 
+<!-- cognis:domains:start -->
+## Domains
+
+**Primary domain:** Defense & Aerospace  ·  **JTF MERIDIAN division:** IRONCLAD · INDIA
+
+**Topics:** `cognis` `defense` `aerospace` `defense-tech` `threat-intel` `compliance`
+
+Part of the **Cognis Neural Suite** — 300+ source-available tools organized across 12 domains under the JTF MERIDIAN command structure. See the [suite on GitHub](https://github.com/cognis-digital) and [jtf-meridian](https://github.com/cognis-digital/jtf-meridian) for how the pieces fit together.
+<!-- cognis:domains:end -->
+
 <!-- cognis:install:start -->
 ## Install
 
