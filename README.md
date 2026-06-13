@@ -5,6 +5,42 @@
 
 > Plan and audit convoys: route distance, fuel, threat exposure, escort requirements, choke points. OR-Tools compatible.
 
+## Usage — step by step
+
+`convoy-or` evaluates a convoy/logistics plan against policy bounds (fuel, threat exposure, escort, chokepoints) and emits findings in your choice of format.
+
+1. **Install** (from PyPI or a local checkout):
+
+   ```bash
+   pip install cognis-convoy-or      # or: pip install -e .
+   convoy-or --version
+   ```
+
+2. **Run a scan** — point it at a directory containing a `plan.json` (or at the file's parent). The positional `target` defaults to `.`:
+
+   ```bash
+   convoy-or ./mission --format console
+   ```
+
+3. **Get machine-readable output** — switch the format and write to a file. Supported: `console`, `json`, `markdown`, `sarif`, `oscal`:
+
+   ```bash
+   convoy-or ./mission --format json --out convoy-findings.json
+   ```
+
+4. **Read the result** — each finding has an id (e.g. `CV-FUEL`, `CV-THREAT`, `CV-ESCORT`, `CV-CHOKE`), a NIST-800-30 severity, and a location. Inspect the JSON:
+
+   ```bash
+   jq '.findings[] | {id, severity, message}' convoy-findings.json
+   ```
+
+5. **Gate it in CI** — make the process exit non-zero when anything at/above a severity is found via `--fail-on` (`very_high`|`high`|`moderate`|`low`|`none`):
+
+   ```bash
+   convoy-or ./mission --format sarif --out convoy.sarif --fail-on high \
+     --classification "UNCLASSIFIED//FOR PUBLIC RELEASE"
+   ```
+
 ## Upstream
 
 Forks / wraps **https://github.com/google/or-tools**. See [`UPSTREAM.md`](./UPSTREAM.md) for the
