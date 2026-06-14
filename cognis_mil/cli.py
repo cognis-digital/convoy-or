@@ -1,5 +1,8 @@
-import argparse, sys
+import argparse
+import sys
+
 from .exporters import to_console, to_json, to_markdown, to_sarif, to_oscal_skeleton
+
 
 def make_cli(tool_name, scan_fn, version="0.1.0", extra_args=None):
     p = argparse.ArgumentParser(prog=tool_name, description=f"{tool_name} — Cognis Digital · Military/IC ecosystem")
@@ -11,22 +14,42 @@ def make_cli(tool_name, scan_fn, version="0.1.0", extra_args=None):
                    help="Operator-supplied banner. PLACEHOLDER. Tool does not interpret.")
     p.add_argument("-v","--version", action="version", version=f"{tool_name} {version}")
     if extra_args:
-        for a in extra_args: p.add_argument(*a["flags"], **{k:v for k,v in a.items() if k!="flags"})
+        for a in extra_args:
+            p.add_argument(*a["flags"], **{k: v for k, v in a.items() if k != "flags"})
     args = p.parse_args()
-    result = scan_fn(args.target, **{k:v for k,v in vars(args).items()
-                                      if k not in {"target","format","out","fail_on","version","classification"}})
+    try:
+        result = scan_fn(args.target, **{k: v for k, v in vars(args).items()
+                                         if k not in {"target", "format", "out", "fail_on", "version", "classification"}})
+    except Exception as exc:  # noqa: BLE001
+        print(f"error: {tool_name} scan failed: {exc}", file=sys.stderr)
+        sys.exit(2)
     result.classification_placeholder = args.classification
-    if hasattr(result, "finalize") and not result.composite_score: result.finalize()
-    fmt = {"console":to_console,"json":to_json,"markdown":to_markdown,"sarif":to_sarif,"oscal":to_oscal_skeleton}[args.format]
+    if hasattr(result, "finalize") and not result.composite_score:
+        result.finalize()
+    fmt = {"console": to_console, "json": to_json, "markdown": to_markdown, "sarif": to_sarif, "oscal": to_oscal_skeleton}[args.format]
     out = fmt(result)
     if args.out:
-        open(args.out,"w").write(out); print(f"Wrote {args.out}", file=sys.stderr)
-    else: print(out)
+        try:
+            with open(args.out, "w", encoding="utf-8") as fh:
+                fh.write(out)
+        except OSError as exc:
+            print(f"error: cannot write output file '{args.out}': {exc}", file=sys.stderr)
+            sys.exit(2)
+        print(f"Wrote {args.out}", file=sys.stderr)
+    else:
+        try:
+            print(out)
+        except UnicodeEncodeError:
+            # Stdout encoding (e.g. cp1252) cannot represent all characters;
+            # re-encode with replacement so the tool never crashes on narrow terminals.
+            encoded = out.encode(sys.stdout.encoding or "utf-8", errors="replace")
+            sys.stdout.buffer.write(encoded + b"\n")
     if args.fail_on != "none":
         from .models import Severity
-        thresh = {"very_high":[Severity.VERY_HIGH],
-                  "high":[Severity.VERY_HIGH,Severity.HIGH],
-                  "moderate":[Severity.VERY_HIGH,Severity.HIGH,Severity.MODERATE],
-                  "low":[Severity.VERY_HIGH,Severity.HIGH,Severity.MODERATE,Severity.LOW]}[args.fail_on]
-        if any(f.severity in thresh for f in result.findings): sys.exit(1)
+        thresh = {"very_high": [Severity.VERY_HIGH],
+                  "high": [Severity.VERY_HIGH, Severity.HIGH],
+                  "moderate": [Severity.VERY_HIGH, Severity.HIGH, Severity.MODERATE],
+                  "low": [Severity.VERY_HIGH, Severity.HIGH, Severity.MODERATE, Severity.LOW]}[args.fail_on]
+        if any(f.severity in thresh for f in result.findings):
+            sys.exit(1)
     sys.exit(0)
