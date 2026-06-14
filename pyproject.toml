@@ -23,3 +23,6 @@ convoy-or = "convoy_or.cli:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["convoy_or", "cognis_mil"]
+
+[tool.hatch.metadata]
+allow-direct-references = true
