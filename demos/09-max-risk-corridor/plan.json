@@ -1,0 +1,14 @@
+{
+  "stops": [
+    { "name": "FOB SENTINEL (exercise)", "lat": 33.300, "lon": 44.400, "dwell_min": 0, "threat_score": 0.4, "fuel_available": false },
+    { "name": "Wadi crossing (canalized)", "lat": 33.520, "lon": 44.620, "dwell_min": 20, "threat_score": 0.75, "choke_point": true },
+    { "name": "Overpass shadow (notional)", "lat": 33.740, "lon": 44.840, "dwell_min": 15, "threat_score": 0.88, "choke_point": true },
+    { "name": "Urban defile", "lat": 33.960, "lon": 45.060, "dwell_min": 10, "threat_score": 0.7, "choke_point": true },
+    { "name": "Objective KEYSTONE", "lat": 34.180, "lon": 45.280, "dwell_min": 0, "threat_score": 0.5, "fuel_available": false }
+  ],
+  "vehicles": [
+    { "id": "MRAP-LR", "type": "MaxxPro", "range_km": 60, "fuel_per_km": 0.7, "armored": true }
+  ],
+  "max_threat_per_leg": 0.7,
+  "escort_required_above_threat": 0.5
+}

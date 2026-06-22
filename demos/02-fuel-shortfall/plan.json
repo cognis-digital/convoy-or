@@ -1,0 +1,14 @@
+{
+  "stops": [
+    { "name": "NTC Fort Irwin LSA", "lat": 35.262, "lon": -116.685, "dwell_min": 0, "threat_score": 0.1, "fuel_available": true },
+    { "name": "Tiefort City (notional)", "lat": 35.330, "lon": -116.560, "dwell_min": 20, "threat_score": 0.2 },
+    { "name": "Granite Pass RP", "lat": 35.150, "lon": -116.250, "dwell_min": 15, "threat_score": 0.2 },
+    { "name": "Drinkwater Lake LRP", "lat": 35.000, "lon": -116.050, "dwell_min": 25, "threat_score": 0.2 },
+    { "name": "Range Control TAA", "lat": 35.280, "lon": -116.620, "dwell_min": 0, "threat_score": 0.1, "fuel_available": true }
+  ],
+  "vehicles": [
+    { "id": "LMTV-1", "type": "LMTV", "range_km": 70, "fuel_per_km": 0.45, "armored": false }
+  ],
+  "max_threat_per_leg": 0.7,
+  "escort_required_above_threat": 0.6
+}

@@ -1,0 +1,12 @@
+{
+  "stops": [
+    { "name": "Camp Lemonnier", "lat": 11.547, "lon": 43.155, "dwell_min": 0, "threat_score": 0.1, "fuel_available": true },
+    { "name": "RN-1 / Ambouli junction", "lat": 11.560, "lon": 43.150, "dwell_min": 5, "threat_score": 0.15 },
+    { "name": "Doraleh Multipurpose Port gate", "lat": 11.595, "lon": 43.085, "dwell_min": 30, "threat_score": 0.15, "fuel_available": true }
+  ],
+  "vehicles": [
+    { "id": "MTVR-1", "type": "MTVR", "range_km": 480, "fuel_per_km": 0.42, "armored": true }
+  ],
+  "max_threat_per_leg": 0.7,
+  "escort_required_above_threat": 0.5
+}

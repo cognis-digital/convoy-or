@@ -1,0 +1,15 @@
+{
+  "stops": [
+    { "name": "Camp Arifjan SPOD", "lat": 28.870, "lon": 48.150, "dwell_min": 0, "threat_score": 0.15, "fuel_available": true },
+    { "name": "Highway 80 control point", "lat": 29.300, "lon": 47.900, "dwell_min": 20, "threat_score": 0.25 },
+    { "name": "Convoy Support Center (notional)", "lat": 29.800, "lon": 47.700, "dwell_min": 45, "threat_score": 0.2, "fuel_available": true },
+    { "name": "Border crossing staging", "lat": 30.080, "lon": 47.700, "dwell_min": 30, "threat_score": 0.3 },
+    { "name": "Forward distribution point", "lat": 30.500, "lon": 47.820, "dwell_min": 0, "threat_score": 0.2, "fuel_available": true }
+  ],
+  "vehicles": [
+    { "id": "HEMTT-1", "type": "HEMTT", "range_km": 480, "fuel_per_km": 0.55, "armored": true },
+    { "id": "M915-1", "type": "M915", "range_km": 800, "fuel_per_km": 0.5, "armored": false }
+  ],
+  "max_threat_per_leg": 0.7,
+  "escort_required_above_threat": 0.5
+}

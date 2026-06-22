@@ -1,0 +1,14 @@
+{
+  "stops": [
+    { "name": "FOB ANVIL (exercise)", "lat": 32.600, "lon": 44.020, "dwell_min": 0, "threat_score": 0.3, "fuel_available": true },
+    { "name": "Phase Line BLUE", "lat": 32.720, "lon": 44.180, "dwell_min": 10, "threat_score": 0.55 },
+    { "name": "IED belt overlay (notional)", "lat": 32.840, "lon": 44.320, "dwell_min": 5, "threat_score": 0.82 },
+    { "name": "Objective WAREHOUSE", "lat": 32.960, "lon": 44.460, "dwell_min": 0, "threat_score": 0.4, "fuel_available": true }
+  ],
+  "vehicles": [
+    { "id": "MRAP-1", "type": "MaxxPro", "range_km": 950, "fuel_per_km": 0.6, "armored": true },
+    { "id": "MRAP-2", "type": "MaxxPro", "range_km": 950, "fuel_per_km": 0.6, "armored": true }
+  ],
+  "max_threat_per_leg": 0.7,
+  "escort_required_above_threat": 0.5
+}

@@ -1,0 +1,13 @@
+{
+  "stops": [
+    { "name": "JMRC Hohenfels marshalling", "lat": 49.218, "lon": 11.840, "dwell_min": 0, "threat_score": 0.2, "fuel_available": true },
+    { "name": "Defile entry (notional)", "lat": 49.250, "lon": 11.900, "dwell_min": 10, "threat_score": 0.45, "choke_point": true },
+    { "name": "Bridge crossing (notional)", "lat": 49.300, "lon": 11.980, "dwell_min": 15, "threat_score": 0.5, "choke_point": true },
+    { "name": "Assembly area NORTH", "lat": 49.360, "lon": 12.040, "dwell_min": 0, "threat_score": 0.2, "fuel_available": true }
+  ],
+  "vehicles": [
+    { "id": "BOXER-1", "type": "Boxer", "range_km": 1050, "fuel_per_km": 0.5, "armored": true }
+  ],
+  "max_threat_per_leg": 0.7,
+  "escort_required_above_threat": 0.4
+}

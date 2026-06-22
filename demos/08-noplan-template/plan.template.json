@@ -1,0 +1,13 @@
+{
+  "_comment": "Copy this file to plan.json and fill in your own stops/vehicles, then run convoy-or on this directory. Coordinates are decimal degrees; threat_score is 0.0-1.0.",
+  "stops": [
+    { "name": "Origin", "lat": 0.0, "lon": 0.0, "dwell_min": 0, "threat_score": 0.0, "fuel_available": true },
+    { "name": "Waypoint", "lat": 0.0, "lon": 0.0, "dwell_min": 10, "threat_score": 0.0, "choke_point": false },
+    { "name": "Destination", "lat": 0.0, "lon": 0.0, "dwell_min": 0, "threat_score": 0.0, "fuel_available": true }
+  ],
+  "vehicles": [
+    { "id": "V1", "type": "HEMTT", "range_km": 480, "fuel_per_km": 0.5, "armored": true }
+  ],
+  "max_threat_per_leg": 0.7,
+  "escort_required_above_threat": 0.5
+}

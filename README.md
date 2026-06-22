@@ -63,11 +63,33 @@ pip install -e ../../shared
 pip install -e .
 ```
 
-## Demo
+## Demos — real-use-case scenarios
+
+Each `demos/<NN-name>/` directory has a `plan.json` in the tool's real input
+format plus a `SCENARIO.md` (where the data came from, what to expect, the exact
+run command, and how to act). They span permissive, training, exercise, and
+humanitarian situations and collectively exercise every finding type.
+
+| Demo | Situation | Fires |
+|------|-----------|-------|
+| `01-mixed` | Mountain route with chokes + high threat | `CV-THREAT` `CV-CHOKE` `CV-ESCORT` |
+| `02-fuel-shortfall` | NTC desert loop, short-range LMTV | `CV-FUEL` |
+| `03-djibouti-port-run` | Permissive Camp Lemonnier → Doraleh port run | `CV-OK` (green baseline) |
+| `04-mountain-chokepoint` | JMRC defile + bridge choke points | `CV-CHOKE` `CV-ESCORT` |
+| `05-high-threat-corridor` | IED-belt overlay over the hard ceiling (exercise) | `CV-THREAT` `CV-ESCORT` |
+| `06-multimodal-refuel` | Line-haul with a mixed fleet + mid-route CSC | `CV-OK` (refuel plan in meta) |
+| `07-hadr-flood-relief` | HADR aid convoy over flood-damaged bridges | `CV-CHOKE` `CV-ESCORT` |
+| `08-noplan-template` | Fill-in starter template + the no-plan error path | `CV-NOPLAN` |
+| `09-max-risk-corridor` | Worst-case: every finding at once (exercise) | `CV-FUEL` `CV-THREAT` `CV-ESCORT` `CV-CHOKE` |
 
 ```bash
 convoy-or demos/01-mixed/
+convoy-or demos/09-max-risk-corridor/ --format sarif --fail-on high   # exits 1
 ```
+
+> All node names/coordinates in the contested/exercise demos are notional
+> planning constructs. Demos are framed for **authorized planning, training, and
+> humanitarian use** only.
 
 Outputs are available in five formats — all respect an operator-supplied
 classification banner (passed via `--classification`):
@@ -79,6 +101,24 @@ convoy-or <target> --format=sarif       # for code-scanning pipelines
 convoy-or <target> --format=markdown    # for PRs / briefings
 convoy-or <target> --format=oscal       # OSCAL Assessment Results skeleton
 ```
+
+## Map export — GeoJSON (RFC 7946)
+
+convoy-or is the geospatial member of the suite: every stop has a lat/lon and
+every leg is a line on a map. The `convoy-or-map` command renders a plan as a
+standard **RFC 7946 `FeatureCollection`** you can drop straight into QGIS,
+kepler.gl, Leaflet, [geojson.io](https://geojson.io), or an ATAK/CivTAK overlay:
+
+```bash
+convoy-or-map demos/04-mountain-chokepoint/                 # GeoJSON to stdout
+convoy-or-map demos/07-hadr-flood-relief/ --out route.geojson
+```
+
+Output is one **Point** feature per stop (with `threat_band`, `dwell_min`,
+`choke_point`, `fuel_available`), one **LineString** per leg (with
+`distance_km`, `leg_threat`, `escort_required`, `over_policy`), and a single
+whole-route LineString for styling the track. Coordinates use GeoJSON
+`[lon, lat]` order.
 
 ## Classification banner
 

@@ -1,0 +1,14 @@
+{
+  "stops": [
+    { "name": "Aid staging yard (port)", "lat": 24.860, "lon": 67.010, "dwell_min": 0, "threat_score": 0.2, "fuel_available": true },
+    { "name": "Bridge A (single-lane)", "lat": 24.920, "lon": 67.080, "dwell_min": 25, "threat_score": 0.45, "choke_point": true },
+    { "name": "Distribution hub (school)", "lat": 25.010, "lon": 67.160, "dwell_min": 60, "threat_score": 0.3 },
+    { "name": "Bridge B (flood-damaged)", "lat": 25.090, "lon": 67.240, "dwell_min": 30, "threat_score": 0.45, "choke_point": true },
+    { "name": "Affected village POD", "lat": 25.170, "lon": 67.320, "dwell_min": 0, "threat_score": 0.25 }
+  ],
+  "vehicles": [
+    { "id": "LMTV-CARGO", "type": "LMTV", "range_km": 530, "fuel_per_km": 0.4, "armored": false }
+  ],
+  "max_threat_per_leg": 0.7,
+  "escort_required_above_threat": 0.4
+}
