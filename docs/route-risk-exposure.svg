@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="360" viewBox="0 0 760 360" role="img" aria-label="Convoy route-risk exposure diagram">
+  <title>convoy-or route-risk exposure model</title>
+  <desc>Two routes between the same endpoints: a direct route through an urban choke kill-zone versus a longer bypass with lower threat-weighted time on route. Generated SVG, no external assets.</desc>
+  <style>
+    text { font-family: "Segoe UI", Arial, sans-serif; }
+    .title { font-size: 18px; font-weight: 700; fill: #1a1a1a; }
+    .lbl { font-size: 12px; fill: #333; }
+    .small { font-size: 11px; fill: #555; }
+    .legend { font-size: 11px; fill: #333; }
+  </style>
+  <rect x="0" y="0" width="760" height="360" fill="#fbfbfd"/>
+  <text x="20" y="30" class="title">Route risk = threat-weighted time on route (exposure-minutes)</text>
+
+  <!-- endpoints -->
+  <circle cx="90" cy="200" r="9" fill="#2b6cb0"/>
+  <text x="70" y="232" class="lbl">FOB GATEWAY</text>
+  <circle cx="660" cy="200" r="9" fill="#2b6cb0"/>
+  <text x="612" y="232" class="lbl">Distribution yard</text>
+
+  <!-- ALPHA: direct through choke -->
+  <path d="M90,200 L260,160 L380,150 L500,165 L660,200" fill="none" stroke="#c53030" stroke-width="4"/>
+  <!-- kill zone band -->
+  <rect x="320" y="120" width="120" height="60" fill="#c53030" opacity="0.14"/>
+  <text x="330" y="115" class="small" fill="#c53030">urban choke kill-zone (dwell + slow)</text>
+  <circle cx="380" cy="150" r="7" fill="#c53030"/>
+  <text x="250" y="135" class="lbl" fill="#c53030">ALPHA — direct</text>
+  <text x="250" y="178" class="small" fill="#c53030">short distance, HIGH exposure</text>
+
+  <!-- BRAVO: bypass -->
+  <path d="M90,200 L240,280 L400,300 L560,280 L660,200" fill="none" stroke="#2f855a" stroke-width="4"/>
+  <text x="330" y="330" class="lbl" fill="#2f855a">BRAVO — rural bypass</text>
+  <text x="330" y="318" class="small" fill="#2f855a">longer distance, LOW exposure (no choke)</text>
+
+  <!-- formula -->
+  <text x="20" y="60" class="small">leg_exposure = leg_threat &#215; (transit_min + downstream_dwell_min)   |   route exposure = &#8721; leg_exposure</text>
+
+  <!-- legend -->
+  <rect x="560" y="40" width="180" height="64" fill="#fff" stroke="#ddd"/>
+  <line x1="572" y1="58" x2="600" y2="58" stroke="#c53030" stroke-width="4"/>
+  <text x="606" y="62" class="legend">higher exposure</text>
+  <line x1="572" y1="80" x2="600" y2="80" stroke="#2f855a" stroke-width="4"/>
+  <text x="606" y="84" class="legend">lower exposure</text>
+</svg>

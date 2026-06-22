@@ -81,6 +81,7 @@ humanitarian situations and collectively exercise every finding type.
 | `07-hadr-flood-relief` | HADR aid convoy over flood-damaged bridges | `CV-CHOKE` `CV-ESCORT` |
 | `08-noplan-template` | Fill-in starter template + the no-plan error path | `CV-NOPLAN` |
 | `09-max-risk-corridor` | Worst-case: every finding at once (exercise) | `CV-FUEL` `CV-THREAT` `CV-ESCORT` `CV-CHOKE` |
+| `10-route-compare` | Three alternate routes ranked by exposure (decision support) | `convoy-or-risk` comparison |
 
 ```bash
 convoy-or demos/01-mixed/
@@ -119,6 +120,46 @@ Output is one **Point** feature per stop (with `threat_band`, `dwell_min`,
 `distance_km`, `leg_threat`, `escort_required`, `over_policy`), and a single
 whole-route LineString for styling the track. Coordinates use GeoJSON
 `[lon, lat]` order.
+
+## Route-risk analysis & alternate-route comparison — `convoy-or-risk`
+
+The base scan answers a binary "does this one route pass policy?" question. The
+**`convoy-or-risk`** command answers the comparative, quantitative question a
+route-selection officer actually has: *of these candidate routes, which is least
+dangerous, and where is the danger concentrated?*
+
+It scores each route by **exposure** — threat-weighted time on route
+(`leg_threat × (transit_min + dwell_min)`, summed) — because the dominant convoy
+threat (the complex ambush / IED kill-zone) is driven by **how long** the convoy
+spends in a threat band, not just the **peak** threat. Two routes with the same
+peak threat can differ greatly in real risk. The base policy check is blind to
+that; exposure-minutes are not.
+
+```bash
+# Rank three candidate routes, recommend the safest, show where risk concentrates
+convoy-or-risk demos/10-route-compare/alpha-direct \
+               demos/10-route-compare/bravo-bypass \
+               demos/10-route-compare/charlie-night --format markdown
+
+# Single-route brief; model a slower planned pace
+convoy-or-risk demos/05-high-threat-corridor/ --speed 25
+
+# Machine-readable comparison for a downstream tool
+convoy-or-risk demos/10-route-compare/* --format json --out brief.json
+```
+
+Each route gets a **risk index** (0–100), a **band** (`low`/`elevated`/`high`/
+`severe`), flagged **kill-zones** (choke + threat + dwell), an **over-policy** leg
+count, and concrete defensive **recommendations** (escort, reroute, dwell
+reduction, refuel). The ranking prefers (1) within-policy, then (2) lowest
+exposure, then (3) shortest time on route — and will recommend a *longer* route
+when it buys you out of a kill-zone.
+
+> This is **decision support for a human route choice** — strictly defensive /
+> force-protection. It does **not** target, cue, engage, or task any asset.
+
+Full write-up, threat model, and worked example:
+**[`docs/ROUTE_RISK.md`](docs/ROUTE_RISK.md)** (includes a generated SVG diagram).
 
 ## Classification banner
 

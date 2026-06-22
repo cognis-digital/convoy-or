@@ -1,0 +1,16 @@
+{
+  "_comment": "CHARLIE — same direct MSR as ALPHA but run at reduced dwell (timing mitigation). Same geometry, dwell minimised, demonstrating how reducing dwell in a threat band lowers exposure. Notional/exercise coordinates.",
+  "stops": [
+    { "name": "FOB GATEWAY", "lat": 33.300, "lon": 44.300, "dwell_min": 0, "threat_score": 0.2, "fuel_available": true },
+    { "name": "Route TAMPA jct", "lat": 33.420, "lon": 44.260, "dwell_min": 0, "threat_score": 0.35 },
+    { "name": "Town center choke", "lat": 33.520, "lon": 44.210, "dwell_min": 2, "threat_score": 0.72, "choke_point": true },
+    { "name": "Canal bridge", "lat": 33.610, "lon": 44.180, "dwell_min": 0, "threat_score": 0.55, "choke_point": true },
+    { "name": "Distribution yard", "lat": 33.700, "lon": 44.150, "dwell_min": 0, "threat_score": 0.25, "fuel_available": true }
+  ],
+  "vehicles": [
+    { "id": "MRAP-1", "type": "MaxxPro", "range_km": 900, "fuel_per_km": 0.6, "armored": true },
+    { "id": "MRAP-2", "type": "MaxxPro", "range_km": 900, "fuel_per_km": 0.6, "armored": true }
+  ],
+  "max_threat_per_leg": 0.7,
+  "escort_required_above_threat": 0.5
+}

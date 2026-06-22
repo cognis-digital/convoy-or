@@ -20,6 +20,7 @@ dev = ["pytest>=8.0", "pytest-cov"]
 [project.scripts]
 "convoy-or-emit" = "convoy_or.connect:emit_main"
 "convoy-or-map" = "convoy_or.geojson:map_main"
+"convoy-or-risk" = "convoy_or.risk:risk_main"
 convoy-or = "convoy_or.cli:main"
 
 [tool.hatch.build.targets.wheel]

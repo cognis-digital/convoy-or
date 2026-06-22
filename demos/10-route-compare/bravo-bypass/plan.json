@@ -1,0 +1,16 @@
+{
+  "_comment": "BRAVO — rural bypass. Longer distance, no urban choke, lower peak threat. Notional/exercise coordinates.",
+  "stops": [
+    { "name": "FOB GATEWAY", "lat": 33.300, "lon": 44.300, "dwell_min": 0, "threat_score": 0.2, "fuel_available": true },
+    { "name": "Desert track split", "lat": 33.380, "lon": 44.420, "dwell_min": 5, "threat_score": 0.3 },
+    { "name": "Open-ground waypoint", "lat": 33.500, "lon": 44.470, "dwell_min": 5, "threat_score": 0.35 },
+    { "name": "Rural overpass", "lat": 33.620, "lon": 44.380, "dwell_min": 5, "threat_score": 0.45 },
+    { "name": "Distribution yard", "lat": 33.700, "lon": 44.150, "dwell_min": 0, "threat_score": 0.25, "fuel_available": true }
+  ],
+  "vehicles": [
+    { "id": "MRAP-1", "type": "MaxxPro", "range_km": 900, "fuel_per_km": 0.6, "armored": true },
+    { "id": "MRAP-2", "type": "MaxxPro", "range_km": 900, "fuel_per_km": 0.6, "armored": true }
+  ],
+  "max_threat_per_leg": 0.7,
+  "escort_required_above_threat": 0.5
+}
