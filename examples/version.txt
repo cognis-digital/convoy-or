@@ -1,0 +1,3 @@
+$ convoy-or-emit --version
+
+convoy-or 0.1.0

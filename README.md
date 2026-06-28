@@ -5,6 +5,79 @@
 
 > Plan and audit convoys: route distance, fuel, threat exposure, escort requirements, choke points. OR-Tools compatible.
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ convoy-or-emit --version
+convoy-or 0.1.0
+```
+
+```console
+$ convoy-or-emit --help
+usage: convoy-or [-h] [--format {console,json,markdown,sarif,oscal}]
+                 [--out OUT] [--fail-on {very_high,high,moderate,low,none}]
+                 [--classification CLASSIFICATION] [-v]
+                 [target]
+
+convoy-or — Cognis Digital · Military/IC ecosystem
+
+positional arguments:
+  target                Path/target
+
+options:
+  -h, --help            show this help message and exit
+  --format {console,json,markdown,sarif,oscal}
+  --out OUT             Write output to file
+  --fail-on {very_high,high,moderate,low,none}
+  --classification CLASSIFICATION
+                        Operator-supplied banner. PLACEHOLDER. Tool does not
+                        interpret.
+  -v, --version         show program's version number and exit
+```
+
+> Blocks above are real `convoy-or` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+"findings": [
+    {
+        "id": "1234567890",
+        "title": "Suspicious Network Traffic",
+        "description": "Potential malicious activity detected on port 443.",
+        "objects": [
+            {
+                "id": "obj-1",
+                "type": "indicator",
+                "name": "Malicious IP Address",
+                "value": "192.0.2.1"
+            }
+        ]
+    },
+    {
+        "id": "2345678901",
+        "title": "Unusual File Access",
+        "description": "Unauthorized access to sensitive files detected.",
+        "objects": [
+            {
+                "id": "obj-2",
+                "type": "indicator",
+                "name": "Malicious File Path",
+                "value": "/path/to/malware"
+            }
+        ]
+    }
+]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 `convoy-or` evaluates a convoy/logistics plan against policy bounds (fuel, threat exposure, escort, chokepoints) and emits findings in your choice of format.
